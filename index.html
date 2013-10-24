@@ -6,6 +6,8 @@
         <title>with love, from v to r.</title>
 
         <link href="http://fonts.googleapis.com/css?family=Cookie|Open+Sans:400,700" rel="stylesheet" />
+        <link href='http://fonts.googleapis.com/css?family=Handlee' rel='stylesheet' type='text/css'>
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
 
         <!-- The main CSS file -->
         <link href="style.css" rel="stylesheet" />
@@ -19,12 +21,21 @@
 
         <div class="bar">
 
+            <h1 class="pull-left">crafted with love, have a nice birthday.</h1>
+
             <!-- These two buttons switch the layout varaible,
                  which causes the correct UL to be shown. -->            
-            <a href="#" class="list-icon" ng-class="{active: layout == 'list'}" ng-click="layout = 'list'"></a>
-            <a href="#" class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="layout = 'grid'"></a>
-            <a href="https://instagram.com/oauth/authorize/?client_id=4f9122151c4a45b887421a2afaa8efc1&redirect_uri=http://victorkurauchi.github.io/fromvtor&response_type=token"></a>
-            <a href="#" ng-click="getText()"></a>
+
+            <div class="pull-right">
+                <a href="https://instagram.com/oauth/authorize/?client_id=4f9122151c4a45b887421a2afaa8efc1&redirect_uri=http://victorkurauchi.github.io/fromvtor&response_type=token"><i class="fa fa-cogs"></i></a>
+                
+                <a href="#" title="visualize em lista" ng-class="{active: layout == 'list'}" ng-click="layout = 'list'"><i class="fa fa-list"></i></a>
+
+                <a href="#" title="visualize em grid" ng-class="{active: layout == 'grid'}" ng-click="layout = 'grid'"><i class="fa fa-th"></i></a>
+                
+                <a href="#" title="visualize nossos textos" ng-click="getText()"><i class="fa fa-font"></i></a>
+            </div>
+            
         </div>
 
         <!-- We have two layouts. We choose which one to show depending on the "layout" binding -->
