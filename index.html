@@ -20,29 +20,36 @@
         <div class="bar">
 
             <!-- These two buttons switch the layout varaible,
-                 which causes the correct UL to be shown. -->
-
+                 which causes the correct UL to be shown. -->            
             <a href="#" class="list-icon" ng-class="{active: layout == 'list'}" ng-click="layout = 'list'"></a>
             <a href="#" class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="layout = 'grid'"></a>
             <a href="https://instagram.com/oauth/authorize/?client_id=4f9122151c4a45b887421a2afaa8efc1&redirect_uri=http://127.0.0.1/switchable-grid&response_type=token"></a>
+            <a href="#" ng-click="getText()"></a>
         </div>
-
-
 
         <!-- We have two layouts. We choose which one to show depending on the "layout" binding -->
 
-        <ul ng-show="layout == 'grid'" class="grid">
-            <!-- A view with big photos and no text -->
-            <li ng-repeat="p in pics">
-                <a href="{{p.link}}" target="_blank"><img ng-src="{{p.images.low_resolution.url}}" /></a>
-            </li>
-        </ul>
+        <div class="grid-wrapper">
+            <ul ng-show="layout == 'grid'" class="grid">
+                <!-- A view with big photos and no text -->
+                <li ng-repeat="p in pics">
+                    <a href="{{p.link}}" target="_blank"><img ng-src="{{p.images.low_resolution.url}}" /></a>
+                </li>
+            </ul>
+        </div>
 
         <ul ng-show="layout == 'list'" class="list">
             <!-- A compact view smaller photos and titles -->
             <li ng-repeat="p in pics">
                 <a href="{{p.link}}" target="_blank"><img ng-src="{{p.images.thumbnail.url}}" /></a>
                 <p>{{p.caption.text}}</p>
+            </li>
+        </ul>
+
+        <ul ng-show="layout == 'text'" class="text">
+            <li ng-repeat="text in texts | orderBy:orderProp" class="thumbnail text-listing">
+                <p>desde: {{text.since}} </p>
+                <p>{{text.content}}</p>
             </li>
         </ul>
 

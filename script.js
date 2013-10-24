@@ -4,7 +4,7 @@
 var app = angular.module("switchableGrid", ['ngResource']);
 
 // Create and register the new "instagram" service
-app.factory('instagram', function($resource){
+app.factory('instagram', function($resource) {
 
     return {
         fetchPopular: function(token, tag, userid, callback) {
@@ -37,7 +37,7 @@ app.factory('instagram', function($resource){
 // The controller. Notice that I've included our instagram service which we
 // defined below. It will be available inside the function automatically.
 
-function SwitchableGridController($scope, instagram){
+function SwitchableGridController($scope, $http, instagram){
 
     // Default layout of the app. Clicking the buttons in the toolbar
     // changes this value.
@@ -47,9 +47,11 @@ function SwitchableGridController($scope, instagram){
     $scope.pics = [];
     var arr = [];
 
-    var token = getHashValue('access_token');
+    if (getHashValue('access_token') !== null) {
+        var token = getHashValue('access_token');
+    }
 
-    if (token) {
+    if (typeof token != 'undefined') {
 
         var userid = [223060785, 196583629];
 
@@ -57,20 +59,24 @@ function SwitchableGridController($scope, instagram){
             // Use the instagram service and fetch a list of the popular pics
             instagram.fetchPopular(token, 'love', userid[i], function(data) {
 
-                //arr.push(data);
-
                 // Assigning the pics array will cause the view
-                // to be automatically redrawn by Angular.
-
                 $scope.pics = data;
                 
             }); 
         }
+    }
 
-        //console.log(arr);
+    $scope.getText = function() {
 
+        console.log('called');
         
-        
+        $http.get('text/text.json').success(function(data) {
+          $scope.texts = data;
+        });
+
+        $scope.layout = 'text';
+     
+        $scope.orderProp = 'since';
     }
 
 }

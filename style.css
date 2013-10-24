@@ -48,9 +48,7 @@ section, footer, header, aside, nav{
 
     box-shadow: 0 1px 1px #ccc;
     border-radius: 2px;
-    width: 580px;
     padding: 10px;
-    margin: 80px auto 25px;
     position:relative;
     text-align:right;
     line-height: 1;
@@ -137,7 +135,7 @@ ul.list li p{
 
 ul.grid{
     list-style: none;
-    width: 570px;
+    /*width: 570px;*/
     margin: 0 auto;
     text-align: left;
 }
